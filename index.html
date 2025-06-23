@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>時間記錄器 PWA</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3367D6">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <h2>🕒 時間記錄器 PWA</h2>
+  <button onclick="recordTime('開始')">記錄開始</button>
+  <button onclick="recordTime('結束')">記錄結束</button>
+  <button onclick="downloadLog()">⬇️ 下載記錄</button>
+  <button onclick="clearList()">🗑️ 清空列表</button>
+  <ul id="timeList"></ul>
+</body>
+</html>
