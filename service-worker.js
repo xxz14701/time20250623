@@ -1,20 +1,24 @@
-self.addEventListener('install', function (e) {
-  e.waitUntil(
-    caches.open('v1').then(function (cache) {
-      return cache.addAll([
-        './',
-        './index.html',
-        './style.css',
-        './main.js' // 如果有 JS 檔
-      ]);
-    })
+const CACHE_NAME = 'timelog-cache-v1';
+const URLS = [
+  './',
+  './index.html',
+  './app.js',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png'
+];
+
+self.addEventListener('install', evt => {
+  evt.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(URLS))
+      .then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener('fetch', function (e) {
-  e.respondWith(
-    caches.match(e.request).then(function (response) {
-      return response || fetch(e.request);
-    })
+self.addEventListener('fetch', evt => {
+  evt.respondWith(
+    caches.match(evt.request)
+      .then(resp => resp || fetch(evt.request))
   );
 });
